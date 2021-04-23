@@ -179,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     private void checkForWin(){
 
         TextView textView;
