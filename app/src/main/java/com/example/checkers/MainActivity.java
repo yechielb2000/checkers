@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
                                break;
                        }
 
-
                         isRedTurn = !isRedTurn;
                         repaint();
                     } else margeTypes(finalI, finalJ);
@@ -83,17 +82,15 @@ public class MainActivity extends AppCompatActivity {
         switch ((Integer) board[finalI][finalJ].getTag()) {
 
             case R.drawable.ic_red_king_40:
-
-                if (isRedTurn) showAvailablePlaces(finalI, finalJ, -1, (Integer) board[finalI][finalJ].getTag());
-
+                repaint();
+                if (isRedTurn)  showAvailablePlaces(finalI, finalJ, -1, (Integer) board[finalI][finalJ].getTag());
             case R.drawable.ic_red_soldier_40:
                 if (isRedTurn) showAvailablePlaces(finalI, finalJ, 1, (Integer) board[finalI][finalJ].getTag());
                 break;
 
             case R.drawable.ic_orange_king_40:
-
-                if (!isRedTurn) showAvailablePlaces(finalI, finalJ, 1, (Integer) board[finalI][finalJ].getTag());
-
+                repaint();
+                if (!isRedTurn)  showAvailablePlaces(finalI, finalJ, 1, (Integer) board[finalI][finalJ].getTag());
             case R.drawable.ic_orange_soldier_40:
                 if (!isRedTurn) showAvailablePlaces(finalI, finalJ, -1, (Integer) board[finalI][finalJ].getTag());
                 break;
@@ -102,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void showAvailablePlaces(int finalI, int finalJ, int addition, int tag) {
 
-        repaint();
         int add2 = addition + addition;
         board[finalI][finalJ].setBackgroundColor(Color.DKGRAY);
         try {
@@ -124,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 }else board[finalI + addition][finalJ - 1].setBackgroundColor(Color.GREEN);
             }
         } catch (IndexOutOfBoundsException ignored){}
+
 
         lastI = finalI;
         lastJ = finalJ;
