@@ -8,16 +8,19 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Random;
 
 @SuppressLint("UseCompatLoadingForDrawables")
 public class MainActivity extends AppCompatActivity {
 
     private final TextView[][] board = new TextView[8][8];
     private int orangeSide, redSide;
-    private boolean isRedTurn = true;
+    private boolean isRedTurn;
     private int lastI, lastJ;
 
     @SuppressLint("NonConstantResourceId")
@@ -61,9 +64,6 @@ public class MainActivity extends AppCompatActivity {
                         isRedTurn = !isRedTurn;
                         repaint();
                     } else margeTypes(finalI, finalJ);
-
-
-
                 });
             }
         }
@@ -174,12 +174,14 @@ public class MainActivity extends AppCompatActivity {
 
         if (redSide == 0){
             Toast toast = Toast.makeText(this, "Red won!", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 50);
             textView = toast.getView().findViewById(android.R.id.message);
             textView.setTextColor(Color.RED);
             toast.show();
             resetGame();
         } else if (orangeSide == 0){
             Toast toast = Toast.makeText(this, "Orange won!", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 50);
             textView = toast.getView().findViewById(android.R.id.message);
             textView.setTextColor(Color.parseColor("#FFC300"));
             toast.show();
@@ -197,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void resetGame() {
 
+        TextView textView;
         for (TextView[] textViews : board) {
             for (int j = 0; j < board.length; j++) {
 
@@ -222,6 +225,22 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         repaint();
+
+        isRedTurn = new Random().nextBoolean();
+
+        if (isRedTurn){
+            Toast toast = Toast.makeText(this, "Red start!", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 50);
+            textView = toast.getView().findViewById(android.R.id.message);
+            textView.setTextColor(Color.RED);
+            toast.show();
+        }else{
+            Toast toast = Toast.makeText(this, "Orange start!", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 50);
+            textView = toast.getView().findViewById(android.R.id.message);
+            textView.setTextColor(Color.parseColor("#FFC300"));
+            toast.show();
+        }
     }
 
     @SuppressLint("NonConstantResourceId")
