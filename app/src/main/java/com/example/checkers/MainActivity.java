@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private boolean isRedTurn = true;
     private int lastI, lastJ;
 
-
-
     @SuppressLint("NonConstantResourceId")
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
@@ -46,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
                         board[finalI][finalJ].setTag(board[lastI][lastJ].getTag());
                         board[lastI][lastJ].setTag(0);
 
-
                        switch ((Integer)board[finalI][finalJ].getTag()){
 
                            case R.drawable.ic_red_king_40:
@@ -60,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
                                if(finalJ < lastJ - 1) board[finalI + 1][finalJ + 1].setTag(0);
                                if (finalJ > lastJ + 1) board[finalI + 1][finalJ - 1].setTag(0);
                                break;
-
                        }
                         repaint();
                     } else margeTypes(finalI, finalJ);
@@ -119,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("NonConstantResourceId")
     private void repaint() {
 
+        redSide = 0;
+        orangeSide = 0;
+
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j++) {
 
@@ -146,14 +145,9 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 repaintBackground(i, j);
-
-                checkForEndingGame((Integer) board[i][j].getTag());
+                syncSides((Integer) board[i][j].getTag());
             }
         }
-    }
-
-    private void checkForEndingGame(int tag){
-        syncSides(tag);
         checkForWin();
     }
 
@@ -173,11 +167,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkForWin(){
 
+        TextView textView;
+
         if (redSide == 0){
-            Toast.makeText(this, "Red won!", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this, "Red won!", Toast.LENGTH_LONG);
+            textView = toast.getView().findViewById(android.R.id.message);
+            textView.setTextColor(Color.RED);
+            toast.show();
             resetGame();
         } else if (orangeSide == 0){
-            Toast.makeText(this, "Orange won!", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this, "Orange won!", Toast.LENGTH_LONG);
+            textView = toast.getView().findViewById(android.R.id.message);
+            textView.setTextColor(Color.parseColor("#FFC300"));
+            toast.show();
             resetGame();
         }
     }
