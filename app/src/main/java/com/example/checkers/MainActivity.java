@@ -84,14 +84,20 @@ public class MainActivity extends AppCompatActivity {
             case R.drawable.ic_red_king_40:
                 repaint();
                 if (isRedTurn)  showAvailablePlaces(finalI, finalJ, -1, (Integer) board[finalI][finalJ].getTag());
+                if (isRedTurn) showAvailablePlaces(finalI, finalJ, 1, (Integer) board[finalI][finalJ].getTag());
+                break;
             case R.drawable.ic_red_soldier_40:
+                repaint();
                 if (isRedTurn) showAvailablePlaces(finalI, finalJ, 1, (Integer) board[finalI][finalJ].getTag());
                 break;
 
             case R.drawable.ic_orange_king_40:
                 repaint();
                 if (!isRedTurn)  showAvailablePlaces(finalI, finalJ, 1, (Integer) board[finalI][finalJ].getTag());
+                if (!isRedTurn) showAvailablePlaces(finalI, finalJ, -1, (Integer) board[finalI][finalJ].getTag());
+                break;
             case R.drawable.ic_orange_soldier_40:
+                repaint();
                 if (!isRedTurn) showAvailablePlaces(finalI, finalJ, -1, (Integer) board[finalI][finalJ].getTag());
                 break;
         }
@@ -178,7 +184,6 @@ public class MainActivity extends AppCompatActivity {
             redSide++;
         }
     }
-
 
     private void checkForWin(){
 
