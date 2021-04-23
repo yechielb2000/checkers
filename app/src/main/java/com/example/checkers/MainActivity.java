@@ -53,14 +53,22 @@ public class MainActivity extends AppCompatActivity {
                            case R.drawable.ic_red_soldier_40:
                                if(finalJ < lastJ - 1) board[finalI - 1][finalJ + 1].setTag(0);
                                if (finalJ > lastJ + 1) board[finalI - 1][finalJ - 1].setTag(0);
+
+                               if (finalI == 7) board[finalI][finalJ].setTag(R.drawable.ic_red_king_40);
+
                                break;
 
                            case R.drawable.ic_orange_king_40:
                            case R.drawable.ic_orange_soldier_40:
                                if(finalJ < lastJ - 1) board[finalI + 1][finalJ + 1].setTag(0);
                                if (finalJ > lastJ + 1) board[finalI + 1][finalJ - 1].setTag(0);
+
+                               if (finalI == 0) board[finalI][finalJ].setTag(R.drawable.ic_orange_king_40);
+
                                break;
                        }
+
+
                         isRedTurn = !isRedTurn;
                         repaint();
                     } else margeTypes(finalI, finalJ);
@@ -75,11 +83,17 @@ public class MainActivity extends AppCompatActivity {
         switch ((Integer) board[finalI][finalJ].getTag()) {
 
             case R.drawable.ic_red_king_40:
+
+                if (isRedTurn) showAvailablePlaces(finalI, finalJ, -1, (Integer) board[finalI][finalJ].getTag());
+
             case R.drawable.ic_red_soldier_40:
                 if (isRedTurn) showAvailablePlaces(finalI, finalJ, 1, (Integer) board[finalI][finalJ].getTag());
                 break;
 
             case R.drawable.ic_orange_king_40:
+
+                if (!isRedTurn) showAvailablePlaces(finalI, finalJ, 1, (Integer) board[finalI][finalJ].getTag());
+
             case R.drawable.ic_orange_soldier_40:
                 if (!isRedTurn) showAvailablePlaces(finalI, finalJ, -1, (Integer) board[finalI][finalJ].getTag());
                 break;
