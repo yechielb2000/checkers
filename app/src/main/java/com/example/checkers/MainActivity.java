@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean isRedTurn;
     private int lastI, lastJ;
 
+    //TODO there is a bug that the king kills the allies  or the enemy when he kills with the wrong direction
+
     @SuppressLint("NonConstantResourceId")
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
@@ -51,20 +53,20 @@ public class MainActivity extends AppCompatActivity {
 
                            case R.drawable.ic_red_king_40:
                            case R.drawable.ic_red_soldier_40:
+
                                if(finalJ < lastJ - 1) board[finalI - 1][finalJ + 1].setTag(0);
-                               if (finalJ > lastJ + 1) board[finalI - 1][finalJ - 1].setTag(0);
+                               else if (finalJ > lastJ + 1) board[finalI - 1][finalJ - 1].setTag(0);
 
                                if (finalI == 7) board[finalI][finalJ].setTag(R.drawable.ic_red_king_40);
-
                                break;
 
                            case R.drawable.ic_orange_king_40:
                            case R.drawable.ic_orange_soldier_40:
+
                                if(finalJ < lastJ - 1) board[finalI + 1][finalJ + 1].setTag(0);
-                               if (finalJ > lastJ + 1) board[finalI + 1][finalJ - 1].setTag(0);
+                               else if (finalJ > lastJ + 1) board[finalI + 1][finalJ - 1].setTag(0);
 
                                if (finalI == 0) board[finalI][finalJ].setTag(R.drawable.ic_orange_king_40);
-
                                break;
                        }
 
@@ -161,6 +163,10 @@ public class MainActivity extends AppCompatActivity {
 
                     case 0:
                         board[i][j].setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        break;
+
+                    case R.drawable.ic_for_tests_40:
+                        board[i][j].setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.ic_for_tests_40);
                         break;
 
                 }
@@ -266,6 +272,7 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
 
             case R.id.undo:
+                //todo add undo
                 break;
 
             case R.id.reset:
@@ -282,3 +289,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
+
+//                               if (true){
+//                                   if(finalJ < lastJ - 1){
+//                                       board[finalI - 1][finalJ + 1].setTag(R.drawable.ic_for_tests_40);
+//                                       break;
+//                                   }
+//                                   if (finalJ > lastJ + 1){
+//                                       board[finalI - 1][finalJ - 1].setTag(R.drawable.ic_for_tests_40);
+//                                       break;
+//                                   }
+//                               }else if(finalJ < lastJ - 1) board[finalI + 1][finalJ + 1].setTag(R.drawable.ic_for_tests_40);
+//                               else if (finalJ > lastJ + 1) board[finalI + 1][finalJ - 1].setTag(R.drawable.ic_for_tests_40);
