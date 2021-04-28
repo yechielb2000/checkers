@@ -112,13 +112,37 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     private void showAvailablePlaces(int finalI, int finalJ, int addition, int tag) {
 
         int add2 = addition + addition;
         board[finalI][finalJ].setBackgroundColor(Color.DKGRAY);
 
+        int hisSide = 0;
+        switch (tag){
+
+            case R.drawable.ic_red_soldier_40:
+                hisSide = R.drawable.ic_red_king_40;
+                break;
+
+            case R.drawable.ic_red_king_40:
+                hisSide = R.drawable.ic_red_soldier_40;
+                break;
+
+            case R.drawable.ic_orange_soldier_40:
+                hisSide = R.drawable.ic_orange_king_40;
+                break;
+
+            case R.drawable.ic_orange_king_40:
+                hisSide = R.drawable.ic_orange_soldier_40;
+                break;
+
+            default:
+               break;
+        }
+
         try {
-            if ((Integer) board[finalI + addition][finalJ + 1].getTag() != tag) {
+            if ((Integer) board[finalI + addition][finalJ + 1].getTag() != tag && (Integer) board[finalI + addition][finalJ + 1].getTag() != hisSide) {
                     if ((Integer) board[finalI + addition][finalJ + 1].getTag() != 0 ) {
                         if((Integer) board[finalI + add2][finalJ + 2].getTag() == 0) {
                             board[finalI + add2][finalJ + 2].setBackgroundColor(Color.GREEN);
@@ -128,8 +152,8 @@ public class MainActivity extends AppCompatActivity {
         } catch (IndexOutOfBoundsException ignored){}
 
         try {
-            if ((Integer) board[finalI + addition][finalJ - 1].getTag() != tag) {
-                if ((Integer) board[finalI + addition][finalJ - 1].getTag() != 0  ) {
+            if ((Integer) board[finalI + addition][finalJ - 1].getTag() != tag  && (Integer) board[finalI + addition][finalJ - 1].getTag() != hisSide) {
+                if ((Integer) board[finalI + addition][finalJ - 1].getTag() != 0 ) {
                     if ((Integer) board[finalI + add2][finalJ - 2].getTag() == 0) {
                         board[finalI + add2][finalJ - 2].setBackgroundColor(Color.GREEN);
                     }
