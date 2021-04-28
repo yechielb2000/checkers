@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
                        switch ((Integer)board[finalI][finalJ].getTag()){
 
+
                            case R.drawable.ic_red_king_40:
                            case R.drawable.ic_red_soldier_40:
 
@@ -85,19 +86,25 @@ public class MainActivity extends AppCompatActivity {
 
             case R.drawable.ic_red_king_40:
                 repaint();
-                if (isRedTurn)  showAvailablePlaces(finalI, finalJ, -1, (Integer) board[finalI][finalJ].getTag());
-                if (isRedTurn) showAvailablePlaces(finalI, finalJ, 1, (Integer) board[finalI][finalJ].getTag());
+                if (isRedTurn){
+                    showAvailablePlaces(finalI, finalJ, -1, (Integer) board[finalI][finalJ].getTag());
+                    showAvailablePlaces(finalI, finalJ, 1, (Integer) board[finalI][finalJ].getTag());
+                }
                 break;
+
+            case R.drawable.ic_orange_king_40:
+                repaint();
+                if (!isRedTurn) {
+                    showAvailablePlaces(finalI, finalJ, 1, (Integer) board[finalI][finalJ].getTag());
+                    showAvailablePlaces(finalI, finalJ, -1, (Integer) board[finalI][finalJ].getTag());
+                }
+                break;
+
             case R.drawable.ic_red_soldier_40:
                 repaint();
                 if (isRedTurn) showAvailablePlaces(finalI, finalJ, 1, (Integer) board[finalI][finalJ].getTag());
                 break;
 
-            case R.drawable.ic_orange_king_40:
-                repaint();
-                if (!isRedTurn)  showAvailablePlaces(finalI, finalJ, 1, (Integer) board[finalI][finalJ].getTag());
-                if (!isRedTurn) showAvailablePlaces(finalI, finalJ, -1, (Integer) board[finalI][finalJ].getTag());
-                break;
             case R.drawable.ic_orange_soldier_40:
                 repaint();
                 if (!isRedTurn) showAvailablePlaces(finalI, finalJ, -1, (Integer) board[finalI][finalJ].getTag());
@@ -109,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
         int add2 = addition + addition;
         board[finalI][finalJ].setBackgroundColor(Color.DKGRAY);
+
         try {
             if ((Integer) board[finalI + addition][finalJ + 1].getTag() != tag) {
                     if ((Integer) board[finalI + addition][finalJ + 1].getTag() != 0 ) {
@@ -196,17 +204,17 @@ public class MainActivity extends AppCompatActivity {
         TextView textView;
 
         if (redSide == 0){
-            Toast toast = Toast.makeText(this, "Red won!", Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 50);
-            textView = toast.getView().findViewById(android.R.id.message);
-            textView.setTextColor(Color.RED);
-            toast.show();
-            resetGame();
-        } else if (orangeSide == 0){
             Toast toast = Toast.makeText(this, "Orange won!", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 50);
             textView = toast.getView().findViewById(android.R.id.message);
             textView.setTextColor(Color.parseColor("#FFC300"));
+            toast.show();
+            resetGame();
+        } else if (orangeSide == 0){
+            Toast toast = Toast.makeText(this, "Red won!", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 50);
+            textView = toast.getView().findViewById(android.R.id.message);
+            textView.setTextColor(Color.RED);
             toast.show();
             resetGame();
         }
