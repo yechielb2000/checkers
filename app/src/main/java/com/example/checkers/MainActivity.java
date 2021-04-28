@@ -51,8 +51,19 @@ public class MainActivity extends AppCompatActivity {
 
                        switch ((Integer)board[finalI][finalJ].getTag()){
 
-
                            case R.drawable.ic_red_king_40:
+                           case R.drawable.ic_orange_king_40:
+
+                               if(lastI < finalI){
+                                   if(finalJ < lastJ - 1) board[finalI - 1][finalJ + 1].setTag(0);
+                                   else if (finalJ > lastJ + 1) board[finalI - 1][finalJ - 1].setTag(0);
+                               }else{
+                                   if(finalJ < lastJ - 1) board[finalI + 1][finalJ + 1].setTag(0);
+                                   else if (finalJ > lastJ + 1) board[finalI + 1][finalJ - 1].setTag(0);
+                               }
+
+                               break;
+
                            case R.drawable.ic_red_soldier_40:
 
                                if(finalJ < lastJ - 1) board[finalI - 1][finalJ + 1].setTag(0);
@@ -61,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                                if (finalI == 7) board[finalI][finalJ].setTag(R.drawable.ic_red_king_40);
                                break;
 
-                           case R.drawable.ic_orange_king_40:
+
                            case R.drawable.ic_orange_soldier_40:
 
                                if(finalJ < lastJ - 1) board[finalI + 1][finalJ + 1].setTag(0);
@@ -160,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
                 }else board[finalI + addition][finalJ - 1].setBackgroundColor(Color.GREEN);
             }
         } catch (IndexOutOfBoundsException ignored){}
-
 
         lastI = finalI;
         lastJ = finalJ;
@@ -333,3 +343,22 @@ public class MainActivity extends AppCompatActivity {
 //                                   }
 //                               }else if(finalJ < lastJ - 1) board[finalI + 1][finalJ + 1].setTag(R.drawable.ic_for_tests_40);
 //                               else if (finalJ > lastJ + 1) board[finalI + 1][finalJ - 1].setTag(R.drawable.ic_for_tests_40);
+
+
+//  case R.drawable.ic_red_king_40:
+//          case R.drawable.ic_red_soldier_40:
+//
+//          if(finalJ < lastJ - 1) board[finalI - 1][finalJ + 1].setTag(0);
+//        else if (finalJ > lastJ + 1) board[finalI - 1][finalJ - 1].setTag(0);
+//
+//        if (finalI == 7) board[finalI][finalJ].setTag(R.drawable.ic_red_king_40);
+//        break;
+//
+//        case R.drawable.ic_orange_king_40:
+//        case R.drawable.ic_orange_soldier_40:
+//
+//        if(finalJ < lastJ - 1) board[finalI + 1][finalJ + 1].setTag(0);
+//        else if (finalJ > lastJ + 1) board[finalI + 1][finalJ - 1].setTag(0);
+//
+//        if (finalI == 0) board[finalI][finalJ].setTag(R.drawable.ic_orange_king_40);
+//        break;
