@@ -1,4 +1,3 @@
-# checkers
 
 # current rules. 
 1. All toold can eat only once.
