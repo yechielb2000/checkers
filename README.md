@@ -1,6 +1,6 @@
 
 # current rules. 
-1. All toold can eat only once.
+1. All tools can eat only one enemy at a time.
 2. King can go only one step to all directions.
 
 
