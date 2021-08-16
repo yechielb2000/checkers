@@ -1,6 +1,6 @@
 
 # current rules. 
-1. All tools can eat only one enemy at a time.
+1. All tools can eat only one enemy at the time.
 2. King can go only one step to all directions.
 
 
